@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="akash.css">
+    <script src="app.js" defer></script>
+    <title>Virtual Keyboard</title>
+</head>
+<body>
+    <div class="navbar">
+        <nav><div class="logo"><a href="#"></a></div></nav>
+    <nav><ul class="link">
+        <li><a href="http://127.0.0.1:5500/login.html">Home</a></li> 
+        <li><a href="http://127.0.0.1:5500/credit.html">Credits</a></li> 
+        <li><a href="#">Contect</a></li> 
+        <li><a href="#">Services</a></li> 
+    </ul></nav>
+    <nav><div class="sign"> <a href="http://127.0.0.1:5500/signup.html">Sign-up</a></div></nav>
+    </div>
+
+    <div class="container"> 
+        <div class="textarea">
+            <textarea></textarea>
+        </div>
+        <div class="keyboard" style="">
+            <div class="row">
+                <button class="Esc">~</button>
+                <button class="btn">1</button>
+                <button class="btn">2</button>
+                <button class="btn">3</button>
+                <button class="btn">4</button>
+                <button class="btn">5</button>
+                <button class="btn">6</button>
+                <button class="btn">7</button>
+                <button class="btn">8</button>
+                <button class="btn">9</button>
+                <button class="btn">0</button>
+                <button class="btn">-</button>
+                <button class="delete">Backspace</button>
+            </div>
+            <div class="row">
+                <button class="tab">Tab</button>
+                <button class="btn">Q</button>
+                <button class="btn">W</button>
+                <button class="btn">E</button>
+                <button class="btn">R</button>
+                <button class="btn">T</button>
+                <button class="btn">Y</button>
+                <button class="btn">U</button>
+                <button class="btn">I</button>
+                <button class="btn">O</button>
+                <button class="btn">P</button>
+                <button class="btn">{</button>
+                <button class="btn">}</button>
+                <button class="btn">\</button>
+            </div>
+            <div class="row">
+                <button class="caps">Caps</button>
+                <button class="btn">A</button>
+                <button class="btn">S</button>
+                <button class="btn">D</button>
+                <button class="btn">F</button>
+                <button class="btn">G</button>
+                <button class="btn">H</button>
+                <button class="btn">J</button>
+                <button class="btn">K</button>
+                <button class="btn">L</button>
+                <button class="btn">:</button>
+                <button class="btn">"</button>
+                <button class="enter">Enter</button>
+            </div>
+            <div class="row">
+                <button class="shift">Shift</button>
+                <button class="btn">Z</button>
+                <button class="btn">X</button>
+                <button class="btn">C</button>
+                <button class="btn">V</button>
+                <button class="btn">B</button>
+                <button class="btn">N</button>
+                <button class="btn">M</button>
+                <button class="btn"><</button>
+                <button class="btn">></button>
+                <button class="btn">/</button>
+                <button class="shift">Shift</button>
+            </div>
+            <div class="row">
+                <button class="ctrl">Ctrl</button>
+                <button class="fn">Fn</button>
+                <button class="windows">Win</button>
+                <button class="alt">Alt</button>
+                <button class="space">Space</button>
+                <button class="alt">Alt</button>
+                <button class="ctrl">Ctrl</button>
+
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const textarea = document.querySelector('.textarea textarea');
+        const buttons = document.querySelectorAll('.btn');
+
+        // Function to handle button clicks
+        function handleButtonClick(event) {
+            const button = event.target;
+            const buttonText = button.textContent;
+
+            if (button.classList.contains('shift')) {
+                // Handle shift key
+                toggleShift();
+            } else if (button.classList.contains('space')) {
+                // Handle space key
+                textarea.value += ' ';
+            } else if (button.classList.contains('enter')) {
+                // Handle enter key
+                textarea.value += '\n';
+            } else if (button.classList.contains('delete')) {
+                // Handle backspace key
+                textarea.value = textarea.value.slice(0, -1);
+            } else {
+                // Handle other keys
+                textarea.value += isShiftEnabled ? buttonText.toUpperCase() : buttonText;
+            }
+        }
+
+        // Flag to track if shift is enabled
+        let isShiftEnabled = false;
+
+        // Function to toggle shift
+        function toggleShift() {
+            isShiftEnabled = !isShiftEnabled;
+            for (const button of buttons) {
+                if (isShiftEnabled) {
+                    button.classList.add('upper');
+                } else {
+                    button.classList.remove('upper');
+                }
+            }
+        }
+
+        // Add click event listener to all buttons
+        for (const button of buttons) {
+            button.addEventListener('click', handleButtonClick);
+        }
+
+        // Handle the Caps Lock key
+        document.querySelector('.caps').addEventListener('click', () => {
+            toggleShift();
+        });
+    </script>
+
+<script>
+    const textarea = document.querySelector('.textarea textarea');
+    const buttons = document.querySelectorAll('.btn');
+
+    // Function to handle button clicks
+    function handleButtonClick(event) {
+        const button = event.target;
+        const buttonText = button.textContent;
+
+        if (button.classList.contains('shift')) {
+            // Handle shift key
+            toggleShift();
+        } else if (button.classList.contains('space')) {
+            // Handle space key
+            textarea.value += ' ';
+        } else if (button.classList.contains('delete')) {
+            // Handle backspace key
+            const currentValue = textarea.value;
+            textarea.value = currentValue.substring(0, currentValue.length - 1);
+        } else if (button.classList.contains('caps')) {
+            // Handle caps lock key
+            toggleCapsLock();
+        } else {
+            // Handle other keys
+            textarea.value += isShiftEnabled || isCapsLockEnabled ? buttonText.toUpperCase() : buttonText;
+        }
+    }
+
+    // Flag to track if shift is enabled
+    let isShiftEnabled = false;
+
+    // Function to toggle shift
+    function toggleShift() {
+        isShiftEnabled = !isShiftEnabled;
+        for (const button of buttons) {
+            if (isShiftEnabled) {
+                button.classList.add('upper');
+            } else {
+                button.classList.remove('upper');
+            }
+        }
+    }
+
+    // Flag to track if caps lock is enabled
+    let isCapsLockEnabled = false;
+
+    // Function to toggle caps lock
+    function toggleCapsLock() {
+        isCapsLockEnabled = !isCapsLockEnabled;
+        for (const button of buttons) {
+            if (isCapsLockEnabled) {
+                button.classList.add('upper');
+            } else {
+                button.classList.remove('upper');
+            }
+        }
+    }
+
+    // Add click event listener to all buttons
+    for (const button of buttons) {
+        button.addEventListener('click', handleButtonClick);
+    }
+</script>
+
+
+
+</body>
+</html>

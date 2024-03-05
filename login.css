@@ -1,0 +1,117 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content{
+    padding-top: 150px;
+    text-align: center;
+
+}
+
+
+.content h1{
+    font-size: 95px;
+    color: #cceffe;
+    margin-bottom: 50px;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 10px #00b3ff,0 0 20px #00b3ff, 0 0 40px #00b3ff,0 0 80px #00b3ff,0 0 120px #00b3ff;
+
+}
+
+.content a{
+    font-size: 27px;
+    color:rgb(173, 255, 47);
+    text-decoration: none;
+    border: 3px solid white ;
+    padding: 20px 35px;
+    border-radius: 50px;
+    transition: 0.3s;
+    width: 200px;
+    height: 100px;
+}
+
+.content a:hover{
+    letter-spacing: 1px;
+    background:yellow;
+    color: black;
+    box-shadow:0 0 10px yellow,0 0 40px yellow ,0 0 80px yellow;
+    -webkit-box-reflect:below 1px linear-gradient(transparent,#0005);
+}
+
+
+.background-clip{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+@media (min-aspect-ratio:16/9) {
+    .background-clip{
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-aspect-ratio:16/9) {
+    .background-clip{
+        width: auto;
+        height: 100%;
+    }
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1rem ;
+}
+a:hover{
+color: orange;
+}
+.navbar{
+    width: 100%;
+    height: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar .logo a{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00b3ff,
+    0 0 20px #00b3ff, 
+    0 0 40px #00b3ff,
+    0 0 80px #00b3ff,
+    0 0 120px #00b3ff;
+}
+.navbar .link{
+    display: flex;
+    gap: 2rem;
+}
+.navbar .sign a{
+    display:inline-block;
+    font-weight: bold;
+    text-transform:uppercase;
+    text-decoration: none;
+    letter-spacing: 5px;
+    border: 2px ;
+    padding: 15px 25px;
+    border-radius: 50px;
+    transition: 0.2s;
+    overflow: hidden;
+}
